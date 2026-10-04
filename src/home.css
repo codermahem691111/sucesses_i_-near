@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap');
 
 /* =========================================================
-   ROOT
+   ROOT & BASE RESET
 ========================================================= */
 
 :root {
@@ -15,7 +15,7 @@
   --muted: #5d6b85;
 }
 
-* {
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
@@ -38,7 +38,7 @@ body {
 }
 
 /* =========================================================
-   BACKGROUND
+   BACKGROUND EFFECTS
 ========================================================= */
 
 body::before {
@@ -94,19 +94,18 @@ body::after {
 }
 
 /* =========================================================
-   MAIN APP
+   MAIN APP CONTAINER
 ========================================================= */
 
 .todo-app {
   width: 100%;
   max-width: 620px;
-
   margin: 0 auto;
 
   padding:
-    max(38px, env(safe-area-inset-top))
-    20px
-    max(40px, env(safe-area-inset-bottom));
+    max(24px, env(safe-area-inset-top))
+    16px
+    max(24px, env(safe-area-inset-bottom));
 }
 
 /* =========================================================
@@ -116,7 +115,7 @@ body::after {
 .todo-header {
   width: 100%;
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
 
 .todo-header h1 {
@@ -125,10 +124,10 @@ body::after {
   font-family: 'Orbitron', sans-serif;
   font-weight: 900;
 
-  font-size: clamp(1.5rem, 7vw, 2.6rem);
+  font-size: clamp(1.4rem, 6.5vw, 2.5rem);
   line-height: 1.2;
 
-  letter-spacing: clamp(1px, 1vw, 6px);
+  letter-spacing: clamp(1px, 0.8vw, 5px);
   text-transform: uppercase;
 
   color: var(--cyan);
@@ -144,14 +143,14 @@ body::after {
 }
 
 .todo-header p {
-  margin: 10px 0 0;
+  margin: 8px 0 0;
 
   color: var(--pink);
 
-  font-size: clamp(0.7rem, 3.2vw, 0.9rem);
-  line-height: 1.5;
+  font-size: clamp(0.68rem, 3vw, 0.88rem);
+  line-height: 1.4;
 
-  letter-spacing: 1.5px;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
 
   text-shadow: 0 0 8px rgba(255, 42, 109, 0.8);
@@ -160,69 +159,48 @@ body::after {
 }
 
 @keyframes glitch {
-  0%,
-  90%,
-  100% {
-    transform: translate(0);
-  }
-
-  92% {
-    transform: translate(-3px, 1px);
-  }
-
-  94% {
-    transform: translate(3px, -1px);
-  }
-
-  96% {
-    transform: translate(-2px, 0);
-  }
+  0%, 90%, 100% { transform: translate(0); }
+  92% { transform: translate(-3px, 1px); }
+  94% { transform: translate(3px, -1px); }
+  96% { transform: translate(-2px, 0); }
 }
 
 /* =========================================================
-   CARD
+   CARD CONTAINER
 ========================================================= */
 
 .todo-card {
   position: relative;
-
   width: 100%;
-
   background: rgba(13, 13, 28, 0.9);
-
   border: 1px solid var(--cyan);
 
-  padding: 24px;
+  padding: 24px 18px 20px;
 
   clip-path: polygon(
     0 0,
-    calc(100% - 24px) 0,
-    100% 24px,
+    calc(100% - 18px) 0,
+    100% 18px,
     100% 100%,
-    24px 100%,
-    0 calc(100% - 24px)
+    18px 100%,
+    0 calc(100% - 18px)
   );
 
-  box-shadow:
-    inset 0 0 40px rgba(0, 240, 255, 0.08);
+  box-shadow: inset 0 0 40px rgba(0, 240, 255, 0.08);
 }
 
 .todo-card::before {
   content: '// SYSTEM.TASKS';
-
   position: absolute;
-
   top: 6px;
-  left: 14px;
-
-  font-size: 0.65rem;
-  letter-spacing: 2px;
-
+  left: 12px;
+  font-size: 0.6rem;
+  letter-spacing: 1.5px;
   color: var(--muted);
 }
 
 .todo-card > .create-wrap {
-  margin-top: 12px;
+  margin-top: 14px;
 }
 
 /* =========================================================
@@ -231,23 +209,18 @@ body::after {
 
 .create-wrap {
   width: 100%;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 
 .create-wrap form,
 .create-wrap > div {
   display: flex !important;
-
   flex-direction: row !important;
   align-items: stretch !important;
-
-  gap: 10px !important;
-
+  gap: 8px !important;
   width: 100% !important;
-
   margin: 0 !important;
   padding: 0 !important;
-
   background: transparent !important;
   border: none !important;
 }
@@ -255,29 +228,25 @@ body::after {
 .create-wrap input[type='text'],
 .create-wrap input:not([type]) {
   flex: 1 !important;
-
   min-width: 0 !important;
   width: 100% !important;
 
-  height: 52px !important;
+  min-height: 48px !important;
 
-  padding: 0 14px !important;
+  padding: 0 12px !important;
   margin: 0 !important;
 
   background: rgba(0, 240, 255, 0.05) !important;
-
   color: var(--cyan) !important;
 
   border: 1px solid rgba(0, 240, 255, 0.4) !important;
-  border-left: 4px solid var(--cyan) !important;
-
+  border-left: 3px solid var(--cyan) !important;
   border-radius: 0 !important;
 
   font-family: 'Share Tech Mono', monospace !important;
-  font-size: 16px !important;
+  font-size: 16px !important; /* Fixed: Prevents iOS auto-zoom on input focus */
 
-  letter-spacing: 1px;
-
+  letter-spacing: 0.5px;
   outline: none !important;
 
   -webkit-appearance: none;
@@ -286,10 +255,8 @@ body::after {
 
 .create-wrap input::placeholder {
   color: var(--muted);
-
   text-transform: uppercase;
   letter-spacing: 1px;
-
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -298,26 +265,18 @@ body::after {
 .create-wrap input:focus {
   border-color: var(--pink) !important;
   border-left-color: var(--pink) !important;
-
   background: rgba(255, 42, 109, 0.07) !important;
-
-  box-shadow:
-    0 0 18px rgba(255, 42, 109, 0.35) !important;
-
+  box-shadow: 0 0 14px rgba(255, 42, 109, 0.35) !important;
   color: #fff !important;
 }
 
 .create-wrap button {
   position: relative !important;
-
   overflow: hidden !important;
-
   flex-shrink: 0 !important;
 
-  height: 52px !important;
-  min-width: 105px !important;
-
-  padding: 0 22px !important;
+  min-height: 48px !important;
+  padding: 0 16px !important;
   margin: 0 !important;
 
   border: none !important;
@@ -333,32 +292,25 @@ body::after {
   background-size: 200% 100% !important;
 
   color: #fff !important;
-
   font-family: 'Orbitron', sans-serif !important;
   font-weight: 700 !important;
-
-  font-size: 0.8rem !important;
-  letter-spacing: 2px !important;
-
+  font-size: 0.78rem !important;
+  letter-spacing: 1.5px !important;
   text-transform: uppercase;
 
   cursor: pointer !important;
-
   touch-action: manipulation;
 
   clip-path: polygon(
-    12px 0,
+    8px 0,
     100% 0,
-    100% calc(100% - 12px),
-    calc(100% - 12px) 100%,
+    100% calc(100% - 8px),
+    calc(100% - 8px) 100%,
     0 100%,
-    0 12px
+    0 8px
   );
 
-  transition:
-    background-position 0.4s,
-    transform 0.15s,
-    filter 0.2s !important;
+  transition: background-position 0.4s, transform 0.15s, filter 0.2s !important;
 }
 
 .create-wrap button:active {
@@ -366,71 +318,52 @@ body::after {
 }
 
 /* =========================================================
-   TODO LIST
+   TODO LIST & ITEMS
 ========================================================= */
 
 .todo-list {
   display: flex;
   flex-direction: column;
-
-  gap: 10px;
-
+  gap: 8px;
   width: 100%;
 }
 
-/* =========================================================
-   TODO ITEM
-========================================================= */
-
 .todo-item {
-  display: flex;
-
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-
-  gap: 10px;
+  gap: 8px;
 
   width: 100%;
   min-width: 0;
 
-  padding: 13px 12px;
+  padding: 10px 10px;
 
   background: var(--panel);
-
   border: 1px solid rgba(0, 240, 255, 0.2);
   border-left: 3px solid var(--cyan);
 
   transition: all 0.25s;
-
   animation: slideIn 0.35s ease;
 }
 
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateX(-14px);
+    transform: translateX(-10px);
   }
-
   to {
     opacity: 1;
     transform: translateX(0);
   }
 }
 
-/* =========================================================
-   TODO LEFT
-========================================================= */
-
 .todo-left {
   display: flex;
-
   align-items: center;
-
-  gap: 10px;
-
-  flex: 1;
-
+  gap: 8px;
   min-width: 0;
+  width: 100%;
 }
 
 /* =========================================================
@@ -439,48 +372,34 @@ body::after {
 
 .todo-check {
   flex-shrink: 0;
-
-  width: 22px;
-  height: 22px;
-
+  width: 20px;
+  height: 20px;
   color: var(--muted);
-
   cursor: pointer;
-
-  padding: 3px;
-
+  padding: 2px;
   box-sizing: content-box;
-
   touch-action: manipulation;
-
   transition: all 0.2s;
 }
 
 .todo-check.done {
   color: var(--yellow);
-
-  filter: drop-shadow(
-    0 0 6px var(--yellow)
-  );
-
+  filter: drop-shadow(0 0 6px var(--yellow));
   cursor: default;
 }
 
 /* =========================================================
-   TASK TEXT
+   TASK TEXT & INPUT
 ========================================================= */
 
 .todo-text {
   flex: 1;
-
   min-width: 0;
-
   margin: 0;
 
-  font-size: 1rem;
-  line-height: 1.4;
-
-  letter-spacing: 0.3px;
+  font-size: 0.92rem;
+  line-height: 1.35;
+  letter-spacing: 0.2px;
 
   color: var(--text);
 
@@ -491,88 +410,67 @@ body::after {
 .todo-text.done {
   text-decoration: line-through;
   text-decoration-color: var(--pink);
-
   color: var(--muted);
 }
 
-/* =========================================================
-   EDIT INPUT
-========================================================= */
-
 .todo-edit-input {
   flex: 1;
-
   min-width: 0;
   width: 100%;
 
-  padding: 8px 10px;
+  padding: 6px 8px;
 
   background: rgba(255, 42, 109, 0.08);
-
   color: #fff;
 
   border: 1px solid var(--pink);
-
   border-radius: 0;
 
   font-family: 'Share Tech Mono', monospace;
-
-  font-size: 16px;
-  line-height: 1.4;
+  font-size: 16px; /* Fixed: Prevents iOS auto-zoom on input focus */
+  line-height: 1.35;
 
   outline: none;
-
-  box-shadow:
-    0 0 14px rgba(255, 42, 109, 0.4);
+  box-shadow: 0 0 10px rgba(255, 42, 109, 0.4);
 }
 
 /* =========================================================
-   ACTION BUTTONS
+   ACTIONS
 ========================================================= */
 
 .todo-actions {
   display: flex;
-
   align-items: center;
-
-  gap: 6px;
-
+  gap: 4px;
   flex-shrink: 0;
 }
 
 .todo-btn {
   display: grid;
-
   place-items: center;
-
   flex-shrink: 0;
 
-  width: 38px;
-  height: 38px;
-
+  width: 36px;
+  height: 36px;
   padding: 0;
 
   background: transparent;
-
   border: 1px solid var(--muted);
-
   border-radius: 0;
 
   color: var(--muted);
-
-  font-size: 0.95rem;
+  font-size: 0.85rem;
 
   cursor: pointer;
-
   touch-action: manipulation;
 
   clip-path: polygon(
-    6px 0,
+    4px 0,
     100% 0,
-    100% calc(100% - 6px),
-    calc(100% - 6px) 100%,
+    100% calc(100% - 4px),
+    calc(100% - 4px) 100%,
     0 100%,
-    0 6px
+    0 4px
   );
 
   transition: all 0.2s;
@@ -580,43 +478,30 @@ body::after {
 
 .todo-btn.save {
   color: var(--yellow);
-
   border-color: var(--yellow);
-
   background: rgba(249, 240, 2, 0.1);
 }
 
 /* =========================================================
-   EMPTY
+   EMPTY STATE
 ========================================================= */
 
 .todo-empty {
   text-align: center;
-
-  padding: 34px 10px;
-
+  padding: 28px 8px;
   color: var(--muted);
-
-  font-size: 0.85rem;
-
-  letter-spacing: 2px;
-
-  line-height: 1.5;
-
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  line-height: 1.4;
   text-transform: uppercase;
 }
 
 .todo-empty span {
   display: block;
-
-  font-size: 2rem;
-
-  margin-bottom: 8px;
-
+  font-size: 1.8rem;
+  margin-bottom: 6px;
   color: var(--cyan);
-
-  text-shadow:
-    0 0 12px var(--cyan);
+  text-shadow: 0 0 10px var(--cyan);
 }
 
 /* =========================================================
@@ -626,39 +511,28 @@ body::after {
 @media (hover: hover) and (pointer: fine) {
   .create-wrap button:hover {
     background-position: 100% 0 !important;
-
-    filter:
-      brightness(1.2)
-      saturate(1.2);
-
-    transform: translateY(-2px);
+    filter: brightness(1.2) saturate(1.2);
+    transform: translateY(-1px);
   }
 
   .todo-item:hover {
     border-color: var(--cyan);
     border-left-color: var(--pink);
-
     box-shadow:
-      0 0 20px rgba(0, 240, 255, 0.25),
-      inset 0 0 20px rgba(0, 240, 255, 0.05);
-
-    transform: translateX(4px);
+      0 0 16px rgba(0, 240, 255, 0.2),
+      inset 0 0 16px rgba(0, 240, 255, 0.05);
+    transform: translateX(2px);
   }
 
   .todo-check:hover {
     color: var(--cyan);
-
-    filter:
-      drop-shadow(0 0 6px var(--cyan));
-
-    transform: scale(1.15);
+    filter: drop-shadow(0 0 6px var(--cyan));
+    transform: scale(1.1);
   }
 
   .todo-btn.edit:hover {
     color: var(--cyan);
-
     border-color: var(--cyan);
-
     background: rgba(0, 240, 255, 0.12);
   }
 
@@ -668,432 +542,91 @@ body::after {
 
   .todo-btn.delete:hover {
     color: var(--pink);
-
     border-color: var(--pink);
-
     background: rgba(255, 42, 109, 0.15);
   }
 }
 
 /* =========================================================
-   TABLET
+   IPHONE SE & NARROW MOBILE SCREENS (<= 414px)
 ========================================================= */
 
-@media (max-width: 600px) {
+@media (max-width: 414px) {
   .todo-app {
     padding:
-      32px
-      14px
-      30px;
-  }
-
-  .todo-header {
-    margin-bottom: 20px;
+      max(16px, env(safe-area-inset-top))
+      10px
+      max(16px, env(safe-area-inset-bottom));
   }
 
   .todo-card {
-    padding: 20px 14px;
-
+    padding: 20px 10px 14px;
     clip-path: polygon(
       0 0,
-      calc(100% - 16px) 0,
-      100% 16px,
+      calc(100% - 12px) 0,
+      100% 12px,
       100% 100%,
-      16px 100%,
-      0 calc(100% - 16px)
+      12px 100%,
+      0 calc(100% - 12px)
     );
   }
 
   .todo-card::before {
-    left: 9px;
-
-    font-size: 0.58rem;
-  }
-
-  .todo-card > .create-wrap {
-    margin-top: 12px;
-  }
-
-  .create-wrap {
-    margin-bottom: 18px;
-  }
-
-  .create-wrap form,
-  .create-wrap > div {
-    gap: 8px !important;
-  }
-
-  .create-wrap button {
-    min-width: 92px !important;
-
-    padding: 0 16px !important;
-
-    font-size: 0.75rem !important;
-
-    letter-spacing: 1.5px !important;
-  }
-
-  .todo-item {
-    padding: 11px 10px;
-
-    gap: 8px;
-  }
-
-  .todo-left {
-    gap: 8px;
-  }
-
-  .todo-text {
-    font-size: 0.95rem;
-  }
-}
-
-/* =========================================================
-   IPHONE / SMALL PHONES
-   375px AND BELOW
-========================================================= */
-
-@media (max-width: 375px) {
-  .todo-app {
-    padding:
-      25px
-      9px
-      24px;
-  }
-
-  .todo-header {
-    margin-bottom: 16px;
-  }
-
-  .todo-header h1 {
-    font-size: 1.25rem;
-
-    line-height: 1.25;
-
-    letter-spacing: 0.8px;
-
-    text-shadow:
-      1px 0 var(--pink),
-      -1px 0 var(--yellow),
-      0 0 12px rgba(0, 240, 255, 0.7);
-  }
-
-  .todo-header p {
-    margin-top: 7px;
-
-    font-size: 0.65rem;
-
-    line-height: 1.4;
-
-    letter-spacing: 0.8px;
-  }
-
-  .todo-card {
-    padding: 19px 9px;
-
-    clip-path: polygon(
-      0 0,
-      calc(100% - 13px) 0,
-      100% 13px,
-      100% 100%,
-      13px 100%,
-      0 calc(100% - 13px)
-    );
-  }
-
-  .todo-card::before {
-    top: 5px;
+    top: 4px;
     left: 8px;
-
-    font-size: 0.5rem;
-
-    letter-spacing: 1px;
+    font-size: 0.52rem;
   }
 
-  .todo-card > .create-wrap {
-    margin-top: 11px;
-  }
-
-  /* CREATE FORM BECOMES STACKED */
-
-  .create-wrap {
-    margin-bottom: 15px;
-  }
-
+  /* Stack input and submit button vertically on small screens */
   .create-wrap form,
   .create-wrap > div {
     flex-direction: column !important;
-
-    gap: 7px !important;
+    gap: 6px !important;
   }
 
   .create-wrap input[type='text'],
   .create-wrap input:not([type]) {
-    width: 100% !important;
-
-    height: 46px !important;
-
-    padding: 0 11px !important;
-
-    font-size: 16px !important;
-
+    min-height: 44px !important;
+    padding: 0 10px !important;
     border-left-width: 3px !important;
   }
 
   .create-wrap button {
     width: 100% !important;
-
-    height: 44px !important;
-
-    min-width: 0 !important;
-
-    padding: 0 12px !important;
-
-    font-size: 0.7rem !important;
-
-    letter-spacing: 1.5px !important;
-  }
-
-  /* TODO LIST */
-
-  .todo-list {
-    gap: 7px;
+    min-height: 42px !important;
+    font-size: 0.72rem !important;
+    letter-spacing: 1px !important;
   }
 
   .todo-item {
-    align-items: flex-start;
-
+    align-items: start;
+    padding: 8px 6px;
     gap: 6px;
-
-    padding: 9px 7px;
-
-    border-left-width: 2px;
   }
 
   .todo-left {
-    align-items: flex-start;
-
+    align-items: start;
     gap: 6px;
-
-    padding-top: 1px;
   }
 
   .todo-check {
     width: 18px;
     height: 18px;
-
-    padding: 2px;
-
-    margin-top: 1px;
+    margin-top: 2px;
   }
 
   .todo-text {
-    font-size: 0.84rem;
-
-    line-height: 1.45;
-
-    letter-spacing: 0.15px;
-  }
-
-  .todo-edit-input {
-    width: 100%;
-
-    padding: 7px 7px;
-
-    font-size: 16px;
-
-    line-height: 1.35;
+    font-size: 0.85rem;
   }
 
   .todo-actions {
-    gap: 3px;
-
-    align-self: flex-start;
+    align-self: start;
   }
 
   .todo-btn {
     width: 32px;
     height: 32px;
-
-    font-size: 0.78rem;
-  }
-}
-
-/* =========================================================
-   IPHONE SE / VERY SMALL
-   320px AND BELOW
-========================================================= */
-
-@media (max-width: 340px) {
-  .todo-app {
-    padding-left: 6px;
-    padding-right: 6px;
-  }
-
-  .todo-header {
-    margin-bottom: 14px;
-  }
-
-  .todo-header h1 {
-    font-size: 1.08rem;
-
-    letter-spacing: 0.4px;
-
-    line-height: 1.25;
-  }
-
-  .todo-header p {
-    font-size: 0.6rem;
-
-    letter-spacing: 0.6px;
-  }
-
-  .todo-card {
-    padding: 18px 7px;
-  }
-
-  .todo-card::before {
-    left: 7px;
-
-    font-size: 0.45rem;
-  }
-
-  .create-wrap {
-    margin-bottom: 13px;
-  }
-
-  .create-wrap input[type='text'],
-  .create-wrap input:not([type]) {
-    height: 44px !important;
-
-    padding: 0 9px !important;
-  }
-
-  .create-wrap button {
-    height: 42px !important;
-
-    font-size: 0.65rem !important;
-  }
-
-  .todo-list {
-    gap: 6px;
-  }
-
-  /*
-     GRID IS BETTER THAN FLEX HERE.
-     TASK CONTENT GETS THE AVAILABLE SPACE.
-     BUTTONS NEVER PUSH THE TASK OUTSIDE.
-  */
-
-  .todo-item {
-    display: grid;
-
-    grid-template-columns:
-      minmax(0, 1fr)
-      auto;
-
-    align-items: start;
-
-    gap: 5px;
-
-    padding: 8px 6px;
-  }
-
-  .todo-left {
-    min-width: 0;
-
-    width: 100%;
-  }
-
-  .todo-actions {
-    align-self: start;
-
-    gap: 3px;
-  }
-
-  .todo-btn {
-    width: 30px;
-    height: 30px;
-
-    font-size: 0.72rem;
-  }
-
-  .todo-check {
-    width: 17px;
-    height: 17px;
-
-    padding: 2px;
-  }
-
-  .todo-text {
-    font-size: 0.78rem;
-
-    line-height: 1.45;
-
-    overflow-wrap: anywhere;
-    word-break: break-word;
-  }
-
-  .todo-edit-input {
-    min-width: 0;
-
-    padding: 6px;
-
-    font-size: 16px;
-  }
-
-  .todo-empty {
-    padding: 28px 6px;
-
-    font-size: 0.72rem;
-
-    letter-spacing: 1.2px;
-  }
-
-  .todo-empty span {
-    font-size: 1.6rem;
-  }
-}
-
-/* =========================================================
-   ULTRA SMALL
-   300px AND BELOW
-========================================================= */
-
-@media (max-width: 300px) {
-  .todo-app {
-    padding-left: 4px;
-    padding-right: 4px;
-  }
-
-  .todo-header h1 {
-    font-size: 0.98rem;
-  }
-
-  .todo-card {
-    padding: 17px 6px;
-  }
-
-  .todo-item {
-    padding: 7px 5px;
-
-    gap: 4px;
-  }
-
-  .todo-text {
-    font-size: 0.74rem;
-  }
-
-  .todo-btn {
-    width: 28px;
-    height: 28px;
-
-    font-size: 0.68rem;
-  }
-
-  .todo-check {
-    width: 16px;
-    height: 16px;
+    font-size: 0.75rem;
   }
 }
 
